@@ -1,6 +1,9 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
 
 export default function Posts() {
     const [posts, setPosts] = useState([]);
@@ -18,6 +21,7 @@ export default function Posts() {
             edges {
               node {
                 slug
+                
                 featuredImage {
                   node {
                     altText
@@ -46,19 +50,20 @@ export default function Posts() {
     return (
         <div>
             {/* Render your posts data */}
-            {posts.map((post) => (
-                <div key={post.node.slug}>
-                    <h2>{post.node.slug}</h2>
-                    {post.node.featuredImage && post.node.featuredImage.node && (
-            <img
-              src={post.node.featuredImage.node.sourceUrl}
-              alt={post.node.featuredImage.node.altText}
-            />
-          )}
-                    {/* <p>{post.node.featuredImage}</p> */}
-                    {/* <img src={post.node.featuredImage.node.sourceUrl} alt={post.node.featuredImage.node.altText} /> */}
-                </div>
-            ))}
+            <Carousel autoPlay={true}>
+                {posts.map((post) => (
+                    <div key={post.node.slug}>
+                        {/* <h2>{post.node.slug}</h2> */}
+                        {post.node.featuredImage?.node && (
+                            <img
+                                src={post.node.featuredImage.node.sourceUrl}
+                                alt={post.node.featuredImage.node.altText}
+                            />
+                        )}
+                    </div>
+                ))}
+            </Carousel>
+
         </div>
     );
 }
