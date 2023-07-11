@@ -51,13 +51,20 @@ export default function Posts() {
         <div>
             {/* Render your posts data */}
             <Carousel
-            showArrows
-            infiniteLoop
-            autoPlay
-            emulateTouch
-            onClickItem={(...args) => console.log('onClickItem', ...args)}
-            onChange={(...args) => console.log('onChange', ...args)}
-            onClickThumb={(...args) => console.log('onClickThumb', ...args)}
+                showThumbs={false}
+                onClickItem={this.click_item}
+                showStatus={false}
+                autoPlay={true}
+                interval={2000}
+                infiniteLoop={true}
+                dynamicHeight={true}
+            // showArrows
+            // infiniteLoop
+            // autoPlay
+            // emulateTouch
+            // onClickItem={(...args) => console.log('onClickItem', ...args)}
+            // onChange={(...args) => console.log('onChange', ...args)}
+            // onClickThumb={(...args) => console.log('onClickThumb', ...args)}
             >
                 {posts.map((post) => (
                     <div key={post.node.slug}>
