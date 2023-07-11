@@ -55,7 +55,7 @@ export default function Posts() {
                 showThumbs={false}
                 onClickItem={this.click_item}
                 showStatus={false}
-                autoPlay={true}
+                autoPlay
                 interval={5000}
                 infiniteLoop={true}
                 dynamicHeight={true}
