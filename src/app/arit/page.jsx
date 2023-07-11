@@ -50,7 +50,9 @@ export default function Posts() {
     return (
         <div>
             {/* Render your posts data */}
-
+            <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+            <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">RUTS PR-Slider V.0.1</span>
+            </nav>
             <Carousel
                 showThumbs={false}
                 onClickItem={this.click_item}
