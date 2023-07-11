@@ -50,6 +50,7 @@ export default function Posts() {
     return (
         <div>
             {/* Render your posts data */}
+
             <Carousel
                 showThumbs={false}
                 onClickItem={this.click_item}
@@ -68,7 +69,7 @@ export default function Posts() {
             >
                 {posts.map((post) => (
                     <div key={post.node.slug}>
-                        {/* <h2>{post.node.slug}</h2> */}
+                        <h2>{post.node.slug}</h2>
                         {post.node.featuredImage?.node && (
                             <img
                                 src={post.node.featuredImage.node.sourceUrl}
