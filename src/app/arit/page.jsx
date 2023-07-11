@@ -50,12 +50,11 @@ export default function Posts() {
     return (
         <div>
             {/* Render your posts data */}
-            <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
-            <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">RUTS PR-Slider V.0.1</span>
+            <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+                <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">ระบบประชาสัมพันธ์ มทร.ศรีวิชัย</span>
             </nav>
             <Carousel
                 showThumbs={false}
-                onClickItem={this.click_item}
                 showStatus={false}
                 autoPlay
                 interval={5000}
