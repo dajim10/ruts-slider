@@ -56,7 +56,7 @@ export default function Posts() {
                 onClickItem={this.click_item}
                 showStatus={false}
                 autoPlay={true}
-                interval={2000}
+                interval={5000}
                 infiniteLoop={true}
                 dynamicHeight={true}
             // showArrows
@@ -69,7 +69,7 @@ export default function Posts() {
             >
                 {posts.map((post) => (
                     <div key={post.node.slug}>
-                        <h2>{post.node.slug}</h2>
+                        {/* <h2>{post.node.slug}</h2> */}
                         {post.node.featuredImage?.node && (
                             <img
                                 src={post.node.featuredImage.node.sourceUrl}
