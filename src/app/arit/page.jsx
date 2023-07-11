@@ -12,17 +12,20 @@ export default function Posts(props) {
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
           items: 1,
-          slidesToSlide: 1 // optional, default to 1.
+            slidesToSlide: 1, // optional, default to 1.
+            partialVisibilityGutter: 60,
         },
         tablet: {
           breakpoint: { max: 1024, min: 464 },
           items: 2,
-          slidesToSlide: 2 // optional, default to 1.
+            slidesToSlide: 2,// optional, default to 1.
+            partialVisibilityGutter: 40,
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },
           items: 1,
-          slidesToSlide: 1 // optional, default to 1.
+            slidesToSlide: 1, // optional, default to 1.
+            partialVisibilityGutter: 30,
         }
     };
     
@@ -73,8 +76,9 @@ export default function Posts(props) {
             </nav>
 
             <Carousel
+                  additionalTransfrom={0}
                    swipeable={false}
-                   draggable={false}
+                   draggable={true}
                    showDots={true}
                    responsive={responsive}
                    ssr={true} // means to render carousel on server-side.
@@ -82,13 +86,17 @@ export default function Posts(props) {
                    autoPlay={props.deviceType !== "mobile" ? true : false}
                    autoPlaySpeed={5000}
                    keyBoardControl={true}
-                   customTransition="ease-in all .5"
-                   transitionDuration={100}
-                   containerClass="carousel-container"
+                   customTransition="all .5"
+                   transitionDuration={500}
+                transitionTimingFunction={'ease-out'}
+                    minimumTouchDrag={80}
+                   containerClass="container-with-dots"
                    removeArrowOnDeviceType={["tablet", "mobile"]}
                    deviceType={props.deviceType}
                    dotListClass="custom-dot-list-style"
                    itemClass="carousel-item-padding-40-px"
+              
+                
                
                 >
                     {posts.map((post) => (
