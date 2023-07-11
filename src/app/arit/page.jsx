@@ -54,10 +54,10 @@ export default function Posts() {
                 <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">ระบบประชาสัมพันธ์ มทร.ศรีวิชัย</span>
             </nav>
 
-            {/* <Carousel
+            <Carousel
                     showThumbs={false}
                     showStatus={false}
-                    autoPlay
+                    autoPlay={true}
                     interval={5000}
                     infiniteLoop={true}
                     dynamicHeight={true}
@@ -74,31 +74,9 @@ export default function Posts() {
                             )}
                         </div>
                     ))}
-            </Carousel> */}
+            </Carousel>
             
-            <div id="animation-carousel" className="h-100 relative" data-carousel="static">
-
-                <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-
-                    <div className="duration-200 ease-linear" data-carousel-item>
-                        {/* <img src="/docs/images/carousel/carousel-1.svg" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." /> */}
-                        {posts.map((post) => (
-                            <div key={post.node.slug}>
-                                {/* <h2>{post.node.slug}</h2> */}
-                                {post.node.featuredImage?.node && (
-                                    <img
-                                        src={post.node.featuredImage.node.sourceUrl}
-                                        alt={post.node.featuredImage.node.altText}
-                                        className='className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"'
-                                    />
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-               
-
-            </div >
+            
         </>
     );
 }
