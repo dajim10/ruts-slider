@@ -6,8 +6,9 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-export default function Posts(props) {
+export default function Posts({ deviceType, params }) {
     const [posts, setPosts] = useState([]);
+    const postID = params.id;
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -36,24 +37,56 @@ export default function Posts(props) {
                 cache: new InMemoryCache(),
             });
 
-            const query = gql`
-        query {
-          posts {
-            edges {
-              node {
-                slug
-                
-                featuredImage {
-                  node {
-                    altText
-                    sourceUrl
-                  }
-                }
-              }
-            }
+            const query = await gql(`
+  posts (where : { categoryName: $categoriesName }) {
+    edges {
+      node {
+        id
+        title
+        featuredImage {
+          node {
+            altText
+            slug
+            sourceUrl
           }
         }
-      `;
+      categories {
+        nodes {
+          id
+          name
+          slug
+        } 
+      }
+      }
+    }
+  }
+`, { categoriesName: `${postID}` });
+
+            //         const query = gql`
+            //     query {
+            //       posts (where : { categoryName: $categoriesName }){
+            //         edges {
+            //           node {
+            //             slug
+
+            //             featuredImage {
+            //               node {
+            //                 altText
+            //                 sourceUrl
+            //               }
+            //             }
+            //             categories {
+            //                 nodes {
+            //                   id
+            //                   name
+            //                   slug
+            //                 } 
+            //               }
+            //           }
+            //         }
+            //       }
+            //     }
+            //   `;
 
             try {
                 const { data } = await client.query({ query });
@@ -71,7 +104,9 @@ export default function Posts(props) {
     return (
         <>
             {/* Render your posts data */}
-           
+            <nav className="bg-blue-900 text-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-blue-900">
+                <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">ระบบประชาสัมพันธ์ มทร.ศรีวิชัย ข่าวของหน่วยงาน <span className='text-yellow-400'> [{postID}] </span> ระบบทดสอบ</span>
+            </nav>
             <div className="main">
                 <div className="slider">
                     <Carousel
@@ -82,7 +117,7 @@ export default function Posts(props) {
                         responsive={responsive}
                         ssr={true} // means to render carousel on server-side.
                         infinite={true}
-                        autoPlay={props.deviceType !== "mobile" ? true : false}
+                        autoPlay={deviceType !== "mobile" ? true : false}
                         autoPlaySpeed={5000}
                         keyBoardControl={true}
                         customTransition="all .5"
@@ -91,7 +126,7 @@ export default function Posts(props) {
                         minimumTouchDrag={80}
                         containerClass="container-with-dots"
                         removeArrowOnDeviceType={["tablet", "mobile"]}
-                        deviceType={props.deviceType}
+                        deviceType={deviceType}
                         dotListClass="custom-dot-list-style"
                         itemClass="carousel-item-padding-40-px"
 
@@ -113,7 +148,7 @@ export default function Posts(props) {
                     </Carousel>
 
                 </div>
-               
+
             </div>
 
 
