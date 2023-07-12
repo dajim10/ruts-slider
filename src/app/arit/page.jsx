@@ -10,25 +10,25 @@ export default function Posts(props) {
     const [posts, setPosts] = useState([]);
     const responsive = {
         desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 1,
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1,
             slidesToSlide: 1, // optional, default to 1.
             partialVisibilityGutter: 60,
         },
         tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 2,
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
             slidesToSlide: 2,// optional, default to 1.
             partialVisibilityGutter: 40,
         },
         mobile: {
-          breakpoint: { max: 464, min: 0 },
-          items: 1,
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
             slidesToSlide: 1, // optional, default to 1.
             partialVisibilityGutter: 30,
         }
     };
-    
+
     useEffect(() => {
         const fetchPosts = async () => {
             const client = new ApolloClient({
@@ -74,46 +74,55 @@ export default function Posts(props) {
             <nav className="bg-gray-200 text-black-300 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
                 <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">ระบบประชาสัมพันธ์ มทร.ศรีวิชัย</span>
             </nav>
+            <div className="main">
+                <div className="slider">
+                    <Carousel
+                        additionalTransfrom={0}
+                        swipeable={false}
+                        draggable={true}
+                        showDots={true}
+                        responsive={responsive}
+                        ssr={true} // means to render carousel on server-side.
+                        infinite={true}
+                        autoPlay={props.deviceType !== "mobile" ? true : false}
+                        autoPlaySpeed={5000}
+                        keyBoardControl={true}
+                        customTransition="all .5"
+                        transitionDuration={500}
+                        transitionTimingFunction={'ease-out'}
+                        minimumTouchDrag={80}
+                        containerClass="container-with-dots"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        deviceType={props.deviceType}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px"
 
-            <Carousel
-                  additionalTransfrom={0}
-                   swipeable={false}
-                   draggable={true}
-                   showDots={true}
-                   responsive={responsive}
-                   ssr={true} // means to render carousel on server-side.
-                   infinite={true}
-                   autoPlay={props.deviceType !== "mobile" ? true : false}
-                   autoPlaySpeed={5000}
-                   keyBoardControl={true}
-                   customTransition="all .5"
-                   transitionDuration={500}
-                transitionTimingFunction={'ease-out'}
-                    minimumTouchDrag={80}
-                   containerClass="container-with-dots"
-                   removeArrowOnDeviceType={["tablet", "mobile"]}
-                   deviceType={props.deviceType}
-                   dotListClass="custom-dot-list-style"
-                   itemClass="carousel-item-padding-40-px"
-              
-                
-               
-                >
-                    {posts.map((post) => (
-                        <div key={post.node.slug}>
 
-                            {post.node.featuredImage?.node && (
-                                <img
-                                    src={post.node.featuredImage.node.sourceUrl}
-                                    alt={post.node.featuredImage.node.altText}
-                                    className='h-auto max-w-full'
-                                />
-                            )}
-                        </div>
-                    ))}
-            </Carousel>
-            
-            
+
+                    >
+                        {posts.map((post) => (
+                            <div key={post.node.slug}>
+
+                                {post.node.featuredImage?.node && (
+                                    <img
+                                        src={post.node.featuredImage.node.sourceUrl}
+                                        alt={post.node.featuredImage.node.altText}
+                                        className='h-auto max-w-full'
+                                    />
+                                )}
+                            </div>
+                        ))}
+                    </Carousel>
+
+                </div>
+                <div className="qr-code place-content-center h-48 ">
+
+                    <iframe src="https://qrcode.rmutsv.ac.th" frameborder="0" height={1000} width={500}></iframe>
+                </div>
+            </div>
+
+
+
         </>
     );
 }

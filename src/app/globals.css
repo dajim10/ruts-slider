@@ -8,3 +8,17 @@
 * {
     font-family: 'Mitr',sans-serif;
 }
+
+.main {
+    display:flex;
+}
+
+.slider {
+    width: 70vw;
+}
+
+.qr-code {
+
+    width : 30vw;
+    height:100vh;
+}
