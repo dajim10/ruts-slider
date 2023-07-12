@@ -115,10 +115,10 @@ export default function Posts(props) {
                     </Carousel>
 
                 </div>
-                <div className="qr-code place-content-center h-48 ">
+                {/* <div className="qr-code place-content-center h-48 ">
 
-                    <iframe src="https://qrcode.rmutsv.ac.th" frameborder="0" height={1000} width={500}></iframe>
-                </div>
+                    <iframe src="https://qrcode.rmutsv.ac.th" frameborder="0" height={1000} width={400}></iframe>
+                </div> */}
             </div>
 
 
