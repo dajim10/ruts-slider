@@ -18,7 +18,22 @@
 }
 
 .qr-code {
-
+    padding:1rem;
     width : 30vw;
     height:100vh;
 }
+
+@media screen and (max-width: 1024px) {
+    .main {
+      display:block;
+    }
+    .slider {
+        width:100vw;
+        margin:auto;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        width:100vw;
+    }
+  }
+  
