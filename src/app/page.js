@@ -109,8 +109,9 @@ export default function Home() {
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p> */}
         </a>
+        
       </div>
-      <Link to="/arit">Arit</Link>
+      <Link href="/arit"><button className="rounded bg-indigo-900 text-white p-2 center">เข้าสู่ระบบประชาสัมพันธ์</button></Link>
     </main>
   )
 }
