@@ -7,7 +7,7 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "rmutsv.ac.th",
                 port: "",
-                pathname:"/**",
+                pathname: "/**",
             }
         ]
     }
