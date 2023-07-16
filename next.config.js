@@ -5,7 +5,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "rmutsv.ac.th",
+                hostname: "pr.web.rmutsv.ac.th",
                 port: "",
                 pathname: "/**",
             }
