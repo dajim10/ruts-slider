@@ -6,7 +6,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export default function Posts(props) {
   const [posts, setPosts] = useState([]);
-  const slug = props.params.id;
+  const slug = props.params.slug;
 
   useEffect(() => {
     const fetchPosts = async () => {
