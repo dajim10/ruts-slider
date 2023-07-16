@@ -1,14 +1,13 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-// import Carousel from "react-multi-carousel";
+// import { Carousel } from 'react-responsive-carousel';
+// import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export default function Posts(props) {
-  const [posts, setPosts] = useState([]);
-  const slug = props.params.id
+    const [posts, setPosts] = useState([]);
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -36,73 +35,30 @@ export default function Posts(props) {
                 uri: 'https://pr.web.rmutsv.ac.th/graphql', // Replace with your WordPress GraphQL endpoint
                 cache: new InMemoryCache(),
             });
-          // (where: { slug: "arit" })
 
-      //       const query = gql`
-      //       query {
-      //         categories (where: { slug: "${slug}" }){
-      //           nodes {
-      //             id
-      //             name
-      //             slug
-      //             posts {
-      //               edges {
-      //                 node {
-      //                   id
-      //                   featuredImage {
-      //                     node {
-      //                       altText
-      //                       sourceUrl
-      //                     }
-      //                   }
-      //                   categories {
-      //                     nodes {
-      //                       id
-      //                       name
-      //                       slug
-      //                     }
-      //                   }
-      //                 }
-      //               }
-      //             }
-      //           }
-      //         }
-      //       }
-            
-          // `;
-          const query = gql`
-          {
-   
-            posts(where: { categoryName: "${slug}"}) {
-              edges {
-                node {
-                  id
-                  title
-                  featuredImage {
-                    node {
-                      sourceUrl
-                    }
-                  }
-                  categories {
-                    edges {
-                      node {
-                        name
-                        slug
-                      }
-                    }
+            const query = gql`
+        query {
+          posts {
+            edges {
+              node {
+                slug
+                
+                featuredImage {
+                  node {
+                    altText
+                    sourceUrl
                   }
                 }
               }
             }
           }
-          `
+        }
+      `;
 
             try {
                 const { data } = await client.query({ query });
-              console.log(data.posts.edges)
-              setPosts(data.posts.edges)
-              // setPosts(data.categories.nodes)
-                // setPosts(data.categories.nodes.posts.edges);
+                console.log(data)
+                setPosts(data.posts.edges);
 
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -116,16 +72,8 @@ export default function Posts(props) {
         <>
             {/* Render your posts data */}
            
-        <div className="main">
-          {/* <Carousel showThumbs={false} autoPlay showArrows={true}>
-
-          {posts.map((post) => (
-            <img key={post.id} src={post.posts.edges[0].node.featuredImage.node.sourceUrl}/>
-            
-          ))}
-          </Carousel> */}
-          {/* <div className="slider">
-            
+            <div className="main">
+                <div className="slider">
                     <Carousel
                         additionalTransfrom={0}
                         swipeable={false}
@@ -150,28 +98,21 @@ export default function Posts(props) {
 
 
                     >
-              {posts.map((post) => (
-                
-                            <div key={post.node.id}>
+                        {posts.map((post) => (
+                            <div key={post.node.slug}>
 
                                 {post.node.featuredImage?.node && (
                                     <img
                                         src={post.node.featuredImage.node.sourceUrl}
                                         alt={post.node.featuredImage.node.altText}
                                         className='h-auto max-w-full'
-                              />
-                              
-                            )}
-                           
-                            {post.node.categories?.nodes && (
-                              <p>{post.node.categories.nodes.slug}</p>
-                            )}
-                       </div>
-
+                                    />
+                                )}
+                            </div>
                         ))}
                     </Carousel>
 
-                </div> */}
+                </div>
                
             </div>
 

@@ -3,10 +3,14 @@ import { useEffect, useState } from 'react';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { useRouter } from 'next/router';
 
 export default function Posts(props) {
   const [posts, setPosts] = useState([]);
-  const slug = props.params.slug;
+    // const slug = props.params.slug;
+    
+    const router = useRouter();
+  const { slug } = router.query;
 
   useEffect(() => {
     const fetchPosts = async () => {

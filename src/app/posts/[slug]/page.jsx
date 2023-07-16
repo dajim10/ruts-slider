@@ -83,7 +83,7 @@ export default function Posts(props) {
       {posts.length === 0 ? (
         <div>Loading...</div>
       ) : (
-        <Carousel autoPlay infiniteLoop interval={5000} responsive={responsive} showThumbs={false} dynamicHeight={true}>
+        <Carousel autoPlay infiniteLoop interval={9000} responsive={responsive} showThumbs={false} dynamicHeight={true}>
           {posts.map((post) => (
             <div key={post.node.id}>
               <h2>{post.node.title}</h2>
