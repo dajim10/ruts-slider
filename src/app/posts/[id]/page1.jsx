@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 export default function Posts(props) {
   const [posts, setPosts] = useState([]);
@@ -31,6 +31,7 @@ export default function Posts(props) {
                           sourceUrl
                         }
                       }
+                      videoUrl
                       categories {
                         edges {
                           node {
@@ -49,7 +50,7 @@ export default function Posts(props) {
       `;
 
       try {
-        const { data } = await client.query({ query, variables: { slug } });
+        const { data } = await client.query({ query, variables: { slug: [slug] } });
         const category = data.categories.edges[0]?.node;
         if (category) {
           setPosts(category.posts.edges);
@@ -61,7 +62,7 @@ export default function Posts(props) {
 
     fetchPosts();
   }, [slug]);
-    
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -77,18 +78,36 @@ export default function Posts(props) {
     },
   };
 
+  const handleVideoPlay = (event) => {
+    event.target.play();
+  };
+
+  const handleVideoPause = (event) => {
+    event.target.pause();
+  };
 
   return (
     <div>
       {posts.length === 0 ? (
         <div>Loading...</div>
       ) : (
-        <Carousel autoPlay infiniteLoop interval={5000} responsive={responsive} showThumbs={false} dynamicHeight={true}>
+        <Carousel responsive={responsive} autoPlay>
           {posts.map((post) => (
             <div key={post.node.id}>
               <h2>{post.node.title}</h2>
               {post.node.featuredImage && (
                 <img src={post.node.featuredImage.node.sourceUrl} alt={post.node.title} />
+              )}
+              {post.node.videoUrl && (
+                <video
+                  src={post.node.videoUrl}
+                  alt={post.node.title}
+                  onMouseOver={handleVideoPlay}
+                  onMouseOut={handleVideoPause}
+                  autoPlay
+                  muted
+                  loop
+                />
               )}
               <div>
                 {post.node.categories.edges.map((category) => (
