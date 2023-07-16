@@ -10,7 +10,16 @@ const nextConfig = {
                 pathname: "/**",
             }
         ]
+    },
+    async rewrite() {
+        return [
+            {
+                source: '/posts/:slug',
+                destination: '/posts/[slug]',
+            }
+        ]
     }
+
 }
 
 module.exports = nextConfig
