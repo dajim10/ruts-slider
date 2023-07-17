@@ -5,20 +5,13 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "ruts-slider.vercel.app/",
+                hostname: "ruts-slider.vercel.app",
                 port: "",
                 pathname: "/**",
             }
         ]
-    },
-    // async rewrite() {
-    //     return [
-    //         {
-    //             source: '/posts/:slug',
-    //             destination: '/posts/[slug]',
-    //         }
-    //     ]
-    // }
+    }
+   
 
 }
 
