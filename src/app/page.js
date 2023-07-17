@@ -41,8 +41,11 @@ export default function Home() {
         <img src="./ruts_logo.png" alt="โลโก้มทร.ศรีวิชัย" />
       </div>
 
-
-      <Link href={`/posts/ruts`}><button className="rounded bg-indigo-900 text-white p-2 center">เข้าสู่ระบบประชาสัมพันธ์</button></Link>
+      <div className="d-flex">
+        
+      <Link href={`/posts/ruts`}><button className="rounded bg-indigo-900 text-white p-2 m-2 center">ข่าวประชาสัมพันธ์</button></Link>
+      <Link href={`/posts/arit`} className="rounded bg-indigo-900 text-white p-2 center">ข่าวสำนักวิทยบริการ</Link>
+</div>
     </main>
   )
 }
