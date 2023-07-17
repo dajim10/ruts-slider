@@ -38,11 +38,11 @@ export default function Home() {
           height={37}
           priority
         /> */}
-        <img src="./ruts_logo.png" alt="โลโก้มทร.ศรีวิชัย"  />
+        <img src="./ruts_logo.png" alt="โลโก้มทร.ศรีวิชัย" />
       </div>
 
-     
-      <Link href="/posts/ruts"><button className="rounded bg-indigo-900 text-white p-2 center">เข้าสู่ระบบประชาสัมพันธ์</button></Link>
+
+      <Link href={`/posts/ruts`}><button className="rounded bg-indigo-900 text-white p-2 center">เข้าสู่ระบบประชาสัมพันธ์</button></Link>
     </main>
   )
 }

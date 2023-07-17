@@ -11,14 +11,14 @@ const nextConfig = {
             }
         ]
     },
-    async rewrite() {
-        return [
-            {
-                source: '/posts/:slug',
-                destination: '/posts/[slug]',
-            }
-        ]
-    }
+    // async rewrite() {
+    //     return [
+    //         {
+    //             source: '/posts/:slug',
+    //             destination: '/posts/[slug]',
+    //         }
+    //     ]
+    // }
 
 }
 
