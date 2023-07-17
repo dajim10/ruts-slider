@@ -5,7 +5,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "ruts-slider-pr.vercel.app/",
+                hostname: "ruts-slider.vercel.app/",
                 port: "",
                 pathname: "/**",
             }
